@@ -22,8 +22,10 @@ int game(Mouse mouse, Vector2i mousePos, Vector2f targetPos, Event& event, Textu
 int aboutautors();
 int afteregame(int score);
 
+RenderWindow window(VideoMode(1500, 1000), "HESH Welcome you!");
+
 int Start() {
-	RenderWindow window(VideoMode(1500, 1000), "HESH Welcome you!");
+
 	Mouse mouse;
 	Texture t1, t2;
 	t1.loadFromFile("gl.png");
@@ -35,11 +37,12 @@ int Start() {
 
 	Image icon;
 	icon.loadFromFile("windowIcon.png");
-	window.setIcon(512,512,icon.getPixelsPtr());
+	window.setIcon(512, 512, icon.getPixelsPtr());
 
 	window.clear();
 	window.draw(s);
 	window.display();
+
 	while (window.isOpen())
 	{
 		Event event;
@@ -54,7 +57,7 @@ int Start() {
 				window.clear();
 				window.draw(s2);
 				window.display();
-				Sleep(500);
+
 				while (window.isOpen())
 				{
 					while (window.pollEvent(event)) {
@@ -62,7 +65,7 @@ int Start() {
 							window.close();
 
 						if (mouse.isButtonPressed(Mouse::Left) || Keyboard::isKeyPressed(Keyboard::Enter) || Keyboard::isKeyPressed(Keyboard::Space)) {
-							window.close();
+
 							return 0;
 						}
 					}
@@ -75,7 +78,6 @@ int Start() {
 }
 
 int menu() {
-	RenderWindow window(VideoMode(1500, 1000), "HESH Welcome you!");
 	Texture menuTexture1, menuTexture2, menuTexture3;
 	menuTexture1.loadFromFile("12.png");
 	menuTexture2.loadFromFile("11.png");
@@ -96,7 +98,7 @@ int menu() {
 	SoundBuffer sound;
 
 	sound.loadFromFile("button.ogg");
-	
+
 	button.setBuffer(sound);
 
 	button.setPitch(405);
@@ -123,34 +125,29 @@ int menu() {
 
 		if (Keyboard::isKeyPressed(Keyboard::Down) && menuNumKeyboard < 3 && menuNumKeyboard >= 0 || Keyboard::isKeyPressed(Keyboard::Right) && menuNumKeyboard < 3 && menuNumKeyboard >= 0) {
 			menuNumKeyboard++;
-			Sleep(150);
-			//playSound = true;
+
 		}
 		else if (Keyboard::isKeyPressed(Keyboard::Down) && menuNumKeyboard == 3 || Keyboard::isKeyPressed(Keyboard::Right) && menuNumKeyboard == 3) {
 			menuNumKeyboard = 1;
-			Sleep(150);
-			//playSound = true;
+
 		}
 		else if (Keyboard::isKeyPressed(Keyboard::Up) && menuNumKeyboard > 0 || Keyboard::isKeyPressed(Keyboard::Left) && menuNumKeyboard > 0) {
 			menuNumKeyboard--;
-			Sleep(150);
-			//playSound = true;
+
 		}
 		else if (Keyboard::isKeyPressed(Keyboard::Up) && menuNumKeyboard == 1 || Keyboard::isKeyPressed(Keyboard::Left) && menuNumKeyboard == 1) {
 			menuNumKeyboard = 3;
-			Sleep(150);
-			//playSound = true;
+
 		}
 		else if (Keyboard::isKeyPressed(Keyboard::Up) && menuNumKeyboard == 0 || Keyboard::isKeyPressed(Keyboard::Left) && menuNumKeyboard == 0) {
 			menuNumKeyboard = 3;
-			Sleep(100);
-			//playSound = true;
+
 		}
 
 		if (IntRect(450, 350, 570, 190).contains(Mouse::getPosition(window))) {
 			menu1.setColor(Color::Blue); menuNum = 1;
 			playSound = true;
-			
+
 		}
 		else if (IntRect(550, 540, 400, 50).contains(Mouse::getPosition(window))) {
 			menu2.setColor(Color::Blue); menuNum = 2;
@@ -176,7 +173,7 @@ int menu() {
 		if (playSound) {
 
 			button.play();
-			
+
 			playSound = false;
 
 		}
@@ -184,7 +181,7 @@ int menu() {
 		if (Mouse::isButtonPressed(Mouse::Left) || Keyboard::isKeyPressed(Keyboard::Enter))
 		{
 			if (menuNum == 1) {
-				window.close();
+
 				return 0;
 			}
 			if (menuNum == 2) { aboutautors(); }
@@ -196,7 +193,7 @@ int menu() {
 		if (Mouse::isButtonPressed(Mouse::Left))
 		{
 			if (menuNum == 1) {
-				window.close();
+
 				return 0;
 			}
 			if (menuNum == 2) { aboutautors(); }
@@ -265,7 +262,7 @@ int aboutautors() {
 	s5.setPosition(50, 2325);
 
 
-	
+
 	while (window.isOpen())
 	{
 		Event event;
@@ -319,7 +316,7 @@ int aboutautors() {
 
 
 int game(Mouse mouse, Vector2i mousePos, Vector2f targetPos, Event& event, Texture targetTexture, int radius, CircleShape target) {
-	
+
 	int score = 0;
 	Font font;
 	font.loadFromFile("Nasa.ttf");
@@ -349,16 +346,16 @@ int game(Mouse mouse, Vector2i mousePos, Vector2f targetPos, Event& event, Textu
 	Sprite srun4;
 	srun4.setTexture(hrun4);
 	int pause = 0;
-	RenderWindow Window(VideoMode(1500, 1000, 32), "THE HESH GAME");
+
 
 	Image icon;
 	icon.loadFromFile("windowIcon.png");
-	Window.setIcon(512, 512, icon.getPixelsPtr());
+	window.setIcon(512, 512, icon.getPixelsPtr());
 
 	RectangleShape background;
 	Vector2f windowSize;
-	windowSize.x = Window.getSize().x;
-	windowSize.y = Window.getSize().y;
+	windowSize.x = window.getSize().x;
+	windowSize.y = window.getSize().y;
 	background.setSize(windowSize);
 
 	Texture backGroundTexture;
@@ -379,11 +376,17 @@ int game(Mouse mouse, Vector2i mousePos, Vector2f targetPos, Event& event, Textu
 	Sound backgroundSound;
 	SoundBuffer backgroundBuffer;
 
+	SoundBuffer deathBuffer;
+	deathBuffer.loadFromFile("death.oga");
+	Sound death;
+	death.setBuffer(deathBuffer);
+
+
 	backgroundBuffer.loadFromFile("background.ogg");
 	backgroundSound.setBuffer(backgroundBuffer);
 
 
-	Window.clear(sf::Color(0, 0, 0));
+
 
 	srun.setPosition(500, 300);
 	srun2.setPosition(550, 375);
@@ -404,12 +407,12 @@ int game(Mouse mouse, Vector2i mousePos, Vector2f targetPos, Event& event, Textu
 	Clock clock;
 	Time time;
 	if (mouse.isButtonPressed(Mouse::Left)) {
-		mousePos = mouse.getPosition(Window);
+		mousePos = mouse.getPosition(window);
 		cout << "X: " << mousePos.x << "\nY: " << mousePos.y;
 	}
 
-	Window.draw(target);
-	Window.display();
+	window.draw(target);
+	window.display();
 	Event event1;
 	int menuNum = 0;
 	int lives = 3;
@@ -417,12 +420,12 @@ int game(Mouse mouse, Vector2i mousePos, Vector2f targetPos, Event& event, Textu
 	int counter = 0;
 
 	backgroundSound.play();
-	while (Window.isOpen() && lives) {
+	while (window.isOpen() && lives) {
 		if (Keyboard::isKeyPressed(Keyboard::X)) {
-			Window.close();
+			window.close();
 			main();
 		}
-		Window.clear(sf::Color(0, 0, 0));
+
 		time = clock.getElapsedTime();
 
 		target.setRadius(time.asSeconds() * 30);
@@ -430,17 +433,17 @@ int game(Mouse mouse, Vector2i mousePos, Vector2f targetPos, Event& event, Textu
 		target.setOrigin(target.getRadius(), target.getRadius());
 
 		text.setPosition(25, 25);
-		Window.draw(background);
-		Window.draw(srun4);
+		window.draw(background);
+		window.draw(srun4);
 		srun4.setColor(Color::White);
 		int highScore = 0;
 
-		if (IntRect(1375, 25, 1400, 125).contains(Mouse::getPosition(Window))) {
+		if (IntRect(1375, 25, 1400, 125).contains(Mouse::getPosition(window))) {
 			srun4.setColor(Color::Blue);
 			menuNum = 3;
 		}
 
-		Window.draw(target);
+		window.draw(target);
 
 		if (mouse.isButtonPressed(Mouse::Left)) {
 
@@ -448,7 +451,7 @@ int game(Mouse mouse, Vector2i mousePos, Vector2f targetPos, Event& event, Textu
 				pause = 1;
 			}
 
-			mousePos = mouse.getPosition(Window);
+			mousePos = mouse.getPosition(window);
 			targetPos = target.getPosition();
 
 			if (mousePos.x >= targetPos.x - target.getRadius() && mousePos.x <= targetPos.x + target.getRadius() && mousePos.y >= targetPos.y - target.getRadius() && mousePos.y <= targetPos.y + target.getRadius()) {
@@ -457,10 +460,10 @@ int game(Mouse mouse, Vector2i mousePos, Vector2f targetPos, Event& event, Textu
 				clock.restart();
 				target.setPosition((rand() % 1000) + radius, (rand() % 800) + radius);
 				target.setRadius(0);
-				Window.clear(sf::Color(0, 0, 0));
-				Window.draw(target);
+
+				window.draw(target);
 				sound.play();
-				Window.display();
+				window.display();
 
 			}
 
@@ -474,9 +477,9 @@ int game(Mouse mouse, Vector2i mousePos, Vector2f targetPos, Event& event, Textu
 			clock.restart();
 			target.setPosition((rand() % 1000) + radius, (rand() % 800) + radius);
 			target.setRadius(0);
-			Window.clear(sf::Color(0, 0, 0));
-			Window.draw(target);
-			Window.display();
+			death.play();
+			window.draw(target);
+			window.display();
 
 		}
 
@@ -484,27 +487,27 @@ int game(Mouse mouse, Vector2i mousePos, Vector2f targetPos, Event& event, Textu
 
 		text.setString(to_string(score) + " " + to_string(highScore));
 
-		Window.draw(text);
-		Window.display();
+		window.draw(text);
+		window.display();
 
 		if (Keyboard::isKeyPressed(Keyboard::R)) {
 			pause = 1;
 		}
 
 		while (pause == 1) {
-			Sleep(50);
-			Window.clear();
-			Window.draw(srun);
-			Window.draw(srun2);
-			Window.draw(srun3);
-			Window.display();
+
+			window.clear();
+			window.draw(srun);
+			window.draw(srun2);
+			window.draw(srun3);
+			window.display();
 			srun2.setColor(Color::White);
 			srun3.setColor(Color::White);
-			if (IntRect(320, 315, 330, 330).contains(Mouse::getPosition(Window))) {
+			if (IntRect(320, 315, 330, 330).contains(Mouse::getPosition(window))) {
 				srun2.setColor(Color::Blue);
 				menuNum = 1;
 			}
-			else if (IntRect(600, 375, 620, 400).contains(Mouse::getPosition(Window))) {
+			else if (IntRect(600, 375, 620, 400).contains(Mouse::getPosition(window))) {
 				srun3.setColor(Color::Blue);
 				menuNum = 2;
 			}
@@ -518,9 +521,9 @@ int game(Mouse mouse, Vector2i mousePos, Vector2f targetPos, Event& event, Textu
 				}
 				if (menuNum == 2) {
 
-					Window.close();
 
-					 return 0;
+
+					return 0;
 					exit(0);
 
 
@@ -528,10 +531,10 @@ int game(Mouse mouse, Vector2i mousePos, Vector2f targetPos, Event& event, Textu
 			}
 		}
 
-		while (Window.pollEvent(event1)) {
+		while (window.pollEvent(event1)) {
 			switch (event1.type) {
 			case Event::Closed:
-				Window.close();
+
 				return 0;
 				break;
 			case Event::KeyPressed:
@@ -541,8 +544,7 @@ int game(Mouse mouse, Vector2i mousePos, Vector2f targetPos, Event& event, Textu
 
 					if (!(mousePos.x >= targetPos.x - target.getRadius() && mousePos.x <= targetPos.x + target.getRadius() && mousePos.y >= targetPos.y - target.getRadius() && mousePos.y <= targetPos.y + target.getRadius())) {
 
-						/*	lives--;
-							cout << "lives " << lives << "\n";*/
+
 
 					}
 
@@ -551,6 +553,7 @@ int game(Mouse mouse, Vector2i mousePos, Vector2f targetPos, Event& event, Textu
 
 		}
 	}
+
 	backgroundSound.stop();
 	backgroundBuffer.loadFromFile("lose.ogg");
 	backgroundSound.setBuffer(backgroundBuffer);
@@ -561,8 +564,8 @@ int game(Mouse mouse, Vector2i mousePos, Vector2f targetPos, Event& event, Textu
 
 		time = clock.getElapsedTime();
 
-		Window.draw(gameOver);
-		Window.display();
+		window.draw(gameOver);
+		window.display();
 
 	}
 
@@ -599,14 +602,10 @@ int main() {
 	HWND hWnd = GetConsoleWindow();
 	ShowWindow(hWnd, SW_HIDE);
 
-	/*Image icon;
-	icon.loadFromFile("windowIcon.png");
-	window.setIcon(icon.getPixelsPtr());*/
-	
+
 
 	system("title THE HASH GAME");
-	int* score = new int;
-	*score = 0;
+
 	char new_window_size[200];
 	wsprintfA(new_window_size, "mode con cols=%d lines=%d", 40, 10);
 	system(new_window_size);
@@ -624,14 +623,15 @@ int main() {
 	Event Event;
 	Texture targetTexture;
 
+
 	Start();
 	menu();
 
 
 	while (game(mouse, mousePos, targetPos, Event, targetTexture, radius, target)) {
-	
+
 		menu();
-	
+
 	}
 
 
