@@ -20,8 +20,8 @@ int Start() {
 
 	Mouse mouse;
 	Texture t1, t2;
-	t1.loadFromFile("gl.png");
-	t2.loadFromFile("g2.png");
+	t1.loadFromFile("hashLogo\\theHash.png");
+	t2.loadFromFile("hashLogo\\hashGameStudio.png");
 	Sprite s;
 	Sprite s2;
 	s.setTexture(t1);
@@ -43,7 +43,7 @@ int Start() {
 				window.close();
 
 			if (mouse.isButtonPressed(Mouse::Left) || Keyboard::isKeyPressed(Keyboard::Enter) || Keyboard::isKeyPressed(Keyboard::Space)) {
-				t2.loadFromFile("g2.png");
+				t2.loadFromFile("hashLogo\\hashGameStudio.png");
 				s2.setTexture(t2);
 				s2.setPosition(460, 150);
 				window.clear();

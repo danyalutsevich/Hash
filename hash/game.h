@@ -22,28 +22,28 @@ int game(Mouse mouse, Vector2i mousePos, Vector2f targetPos, Event& event, Textu
 
 	int score = 0;
 	Font font;
-	font.loadFromFile("Nasa.ttf");
+	font.loadFromFile("fonts\\Nasa.ttf");
 	Text text("", font, 25);
 	Image run;
-	run.loadFromFile("B1.png");
+	run.loadFromFile("icons\\pauseBackground.png");
 	Texture hrun;
 	hrun.loadFromImage(run);
 	Sprite srun;
 	srun.setTexture(hrun);
 	Image run2;
-	run2.loadFromFile("run.png");
+	run2.loadFromFile("icons\\play.png");
 	Texture hrun2;
 	hrun2.loadFromImage(run2);
 	Sprite srun2;
 	srun2.setTexture(hrun2);
 	Image run3;
-	run3.loadFromFile("B3.png");
+	run3.loadFromFile("icons\\exit.png");
 	Texture hrun3;
 	hrun3.loadFromImage(run3);
 	Sprite srun3;
 	srun3.setTexture(hrun3);
 	Image run4;
-	run4.loadFromFile("B2.png");
+	run4.loadFromFile("icons\\pause.png");
 	Texture hrun4;
 	hrun4.loadFromImage(run4);
 	Sprite srun4;
@@ -73,19 +73,19 @@ int game(Mouse mouse, Vector2i mousePos, Vector2f targetPos, Event& event, Textu
 
 	SoundBuffer soundBuffer;
 	Sound sound;
-	soundBuffer.loadFromFile("hash.ogg");
+	soundBuffer.loadFromFile("sounds\\hash.ogg");
 	sound.setBuffer(soundBuffer);
 
 	Sound backgroundSound;
 	SoundBuffer backgroundBuffer;
 
 	SoundBuffer deathBuffer;
-	deathBuffer.loadFromFile("death.oga");
+	deathBuffer.loadFromFile("sounds\\death.oga");
 	Sound death;
 	death.setBuffer(deathBuffer);
 
 
-	backgroundBuffer.loadFromFile("background.ogg");
+	backgroundBuffer.loadFromFile("sounds\\background.ogg");
 	backgroundSound.setBuffer(backgroundBuffer);
 
 
@@ -104,7 +104,7 @@ int game(Mouse mouse, Vector2i mousePos, Vector2f targetPos, Event& event, Textu
 	target.setOrigin(radius, radius);
 	target.setRadius(0);
 	cout << target.getRadius();
-	targetTexture.loadFromFile("target_textures\\texture1.png");
+	targetTexture.loadFromFile("targetTextures\\green.png");
 	target.setTexture(&targetTexture, true);
 
 	Clock clock;
@@ -258,7 +258,7 @@ int game(Mouse mouse, Vector2i mousePos, Vector2f targetPos, Event& event, Textu
 	}
 
 	backgroundSound.stop();
-	backgroundBuffer.loadFromFile("lose.ogg");
+	backgroundBuffer.loadFromFile("sounds\\lose.ogg");
 	backgroundSound.setBuffer(backgroundBuffer);
 	backgroundSound.play();
 	clock.restart();

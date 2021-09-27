@@ -24,14 +24,14 @@ int aboutautors() {
 	View view(FloatRect(0, 0, 1500, 1000));
 	Vector2i localPosition = Mouse::getPosition(window);
 	Image i1;
-	i1.loadFromFile("i1.png");
+	i1.loadFromFile("aboutauthors\\vladAboutAuthors.png");
 	Texture h1;
 	h1.loadFromImage(i1);
 	Sprite s1;
 	s1.setTexture(h1);
 	s1.setPosition(50, 25);
 	Image i2;
-	i2.loadFromFile("i2.png");
+	i2.loadFromFile("aboutauthors\\anyaAboutAuthors.png");
 	Texture h2;
 	h2.loadFromImage(i2);
 	Sprite s2;
@@ -43,7 +43,7 @@ int aboutautors() {
 	window.setIcon(512, 512, icon.getPixelsPtr());
 
 	Image i3;
-	i3.loadFromFile("i3.png");
+	i3.loadFromFile("aboutauthors\\katyaAboutAuthors.png");
 	Texture h3;
 	h3.loadFromImage(i3);
 	Sprite s3;
@@ -51,7 +51,7 @@ int aboutautors() {
 	s3.setPosition(50, 1175);
 
 	Image i4;
-	i4.loadFromFile("i4.png");
+	i4.loadFromFile("aboutauthors\\nazarAboutAuthors.png");
 	Texture h4;
 	h4.loadFromImage(i4);
 	Sprite s4;
@@ -59,7 +59,7 @@ int aboutautors() {
 	s4.setPosition(1150, 1750);
 
 	Image i5;
-	i5.loadFromFile("i5.png");
+	i5.loadFromFile("aboutauthors\\danyaAboutAuthors.png");
 	Texture h5;
 	h5.loadFromImage(i5);
 	Sprite s5;

@@ -18,9 +18,9 @@ int menu();
 
 int menu() {
 	Texture menuTexture1, menuTexture2, menuTexture3;
-	menuTexture1.loadFromFile("12.png");
-	menuTexture2.loadFromFile("11.png");
-	menuTexture3.loadFromFile("13.png");
+	menuTexture1.loadFromFile("menu\\newGame.png");
+	menuTexture2.loadFromFile("menu\\aboutAuthors.png");
+	menuTexture3.loadFromFile("menu\\exit.png");
 	Sprite menu1(menuTexture1), menu2(menuTexture2), menu3(menuTexture3);
 	bool isMenu = 1;
 	int menuNumKeyboard = 0;
@@ -126,7 +126,7 @@ int menu() {
 			if (menuNum == 2) { aboutautors(); }
 			if (menuNum == 3) {
 				window.close();
-				system("pause");
+				exit(0);
 			}
 		}
 		if (Mouse::isButtonPressed(Mouse::Left))
@@ -138,7 +138,7 @@ int menu() {
 			if (menuNum == 2) { aboutautors(); }
 			if (menuNum == 3) {
 				window.close();
-				system("pause");
+				exit(0);
 			}
 		}
 		window.draw(menu1);
