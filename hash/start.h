@@ -25,46 +25,60 @@ int Start() {
 	Sprite s;
 	Sprite s2;
 	s.setTexture(t1);
-	s.setPosition(470, 150);
+	s.setPosition(0, 0);
 
 	Image icon;
 	icon.loadFromFile("windowIcon.png");
 	window.setIcon(512, 512, icon.getPixelsPtr());
 
-	window.clear();
-	window.draw(s);
-	window.display();
+	RectangleShape intro;
+	intro.setSize(Vector2f(1920/1.5,1080/1.5));
+	intro.setPosition(Vector2f(110,140));
+	Texture introTexture;
+
 
 	while (window.isOpen())
 	{
 		Event event;
-		while (window.pollEvent(event)) {
-			if (event.type == Event::Closed)
-				window.close();
+		
 
-			if (mouse.isButtonPressed(Mouse::Left) || Keyboard::isKeyPressed(Keyboard::Enter) || Keyboard::isKeyPressed(Keyboard::Space)) {
-				t2.loadFromFile("hashLogo\\hashGameStudio.png");
-				s2.setTexture(t2);
-				s2.setPosition(460, 150);
-				window.clear();
-				window.draw(s2);
-				window.display();
+		for (int i = 0; i < 300; i++) {
 
-				while (window.isOpen())
-				{
-					while (window.pollEvent(event)) {
-						if (event.type == Event::Closed)
-							window.close();
+			while (window.pollEvent(event)) {
+				if (event.type == Event::Closed) {
 
-						if (mouse.isButtonPressed(Mouse::Left) || Keyboard::isKeyPressed(Keyboard::Enter) || Keyboard::isKeyPressed(Keyboard::Space)) {
-
-							return 0;
-						}
-					}
+					window.close();
+					exit(0);
 
 				}
+				if (mouse.isButtonPressed(Mouse::Left) || Keyboard::isKeyPressed(Keyboard::Enter) || Keyboard::isKeyPressed(Keyboard::Space)) {
+					return 0;
+
+				}
+
 			}
+
+			if (i < 10) {
+				introTexture.loadFromFile("frames\\photo_2021-09-03_12-25-5000"+to_string(i)+".jpg");
+
+			}
+			else if (i < 100) {
+				introTexture.loadFromFile("frames\\photo_2021-09-03_12-25-500" + to_string(i) + ".jpg");
+
+			}
+			else if (i < 1000) {
+				introTexture.loadFromFile("frames\\photo_2021-09-03_12-25-50" + to_string(i) + ".jpg");
+
+			}
+			intro.setTexture(&introTexture, true);
+			window.draw(intro);
+			window.display();
+
 		}
+
+		
+
+		return 0;
 
 	}
 }
