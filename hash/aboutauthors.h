@@ -58,14 +58,23 @@ int aboutautors() {
 	s4.setTexture(h4);
 	s4.setPosition(1150, 1750);
 
-	Image i5;
-	i5.loadFromFile("aboutauthors\\danyaAboutAuthors.png");
-	Texture h5;
-	h5.loadFromImage(i5);
-	Sprite s5;
-	s5.setTexture(h5);
-	s5.setPosition(50, 2325);
+	//Image i5;
+	//i5.loadFromFile("aboutauthors\\danyaAboutAuthors.png");
 
+
+	RectangleShape danyasHead;
+	danyasHead.setSize(Vector2f(350,350));
+
+	Texture headTexture;
+	//h5.loadFromfile(i5);
+	danyasHead.setPosition(50, 2325);
+
+	/*Sprite s5;
+	s5.setTexture(h5);
+	s5.setPosition(50, 2325);*/
+	
+
+	int i = 0;
 
 
 	while (window.isOpen())
@@ -73,8 +82,11 @@ int aboutautors() {
 		Event event;
 		while (window.pollEvent(event))
 		{
-			if (event.type == Event::Closed)
+			if (event.type == Event::Closed) {
+
 				window.close();
+				exit(0);
+			}
 			else if (event.type == Event::MouseWheelMoved)
 			{
 				if (event.mouseWheel.delta == 1 && view.getCenter().y < 2400) view.move(0, 50);
@@ -84,16 +96,45 @@ int aboutautors() {
 		window.clear();
 		window.setView(view);
 
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-				window.close();
-		}
+		
+
 		window.draw(s1);
 		window.draw(s2);
 		window.draw(s3);
 		window.draw(s4);
-		window.draw(s5);
+
+		//for (int i = 0; i <= 300; i++) {
+
+			if (i < 10) {
+
+				headTexture.loadFromFile("head\\000"+to_string(i)+".jpg");
+				//s5.setTexture(h5);
+
+			}
+			else if (i < 100) {
+				
+				headTexture.loadFromFile("head\\00" + to_string(i) + ".jpg");
+			//	s5.setTexture(h5);
+
+			}
+			else if (i < 1000) {
+
+				headTexture.loadFromFile("head\\0" + to_string(i) + ".jpg");
+				//s5.setTexture(h5);
+			}
+
+			danyasHead.setTexture(&headTexture,true);
+			window.draw(danyasHead);
+
+		//	window.display();
+
+			i++;
+			if (i > 300) {
+				i = 0;
+			}
+
+		//}
+
 		text.setString(L"Владислав Величко, он же Валериан Дейкун, он же \nМаграм Байков,он же Раиса Трансовая — глава ритуальной \nконторы, автор бренда и немного дизайнер. \nНу а что? Конторка то молодая! Именно благодаря \nопечатке этого человека появилось слово «ХЭЩ». ");
 		text.setPosition(400, 25);
 		window.draw(text);
